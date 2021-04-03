@@ -11,6 +11,9 @@ public class RemoteDataSourceApi {
 
     private MutableLiveData<List<MovieModel>> searchedMovies;
 
+    private SearchedMoviesRunnable searchedMoviesRunnable;
+
+
     private static RemoteDataSourceApi instance;
 
     public static RemoteDataSourceApi getInstance(){
@@ -31,6 +34,28 @@ public class RemoteDataSourceApi {
     public LiveData<List<MovieModel>> getSearchedMovies(){
 
         return  searchedMovies;
+    }
+
+
+    private class SearchedMoviesRunnable implements Runnable{
+
+        private String query;
+        private int pageNumber;
+        boolean cancelRequest;
+
+        public SearchedMoviesRunnable(String query, int pageNumber) {
+            this.query = query;
+            this.pageNumber = pageNumber;
+            this.cancelRequest = false;
+        }
+
+
+
+
+        @Override
+        public void run() {
+
+        }
     }
 
 }
