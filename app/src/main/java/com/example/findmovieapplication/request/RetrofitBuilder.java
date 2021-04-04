@@ -15,9 +15,9 @@ public class RetrofitBuilder {
 
     private static Retrofit retrofit = retrofitBuilder.build();
 
-    private RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
+    private static RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
 
-    public RetrofitInterface getRetrofitInterface() {
+    public static RetrofitInterface getRetrofitInterface() {
         return retrofitInterface;
     }
 }
