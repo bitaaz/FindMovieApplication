@@ -1,45 +1,47 @@
 package com.example.findmovieapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.findmovieapplication.adapter.MovieRecyclerViewAdapter;
+import com.example.findmovieapplication.adapter.OnMovieListener;
 import com.example.findmovieapplication.model.MovieModel;
 import com.example.findmovieapplication.viewmodel.MovieViewModel;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnMovieListener {
 
     private MovieViewModel movieViewModel;
 
-    private Button button;
+    private RecyclerView recyclerView;
+
+    private MovieRecyclerViewAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        recyclerView = findViewById(R.id.recycler_view);
         movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
 
         observer();
+        configureRecyclerView();
 
-        button = findViewById(R.id.button);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                searchMovieApi("fast", 1);
+        searchMovieApi("fast", 1);
 
 
-            }
-        });
     }
 
     private void observer(){
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                     for (MovieModel movieModel: movieModels){
 
                         Log.v("Tag", "Titles: " + movieModel.getTitle());
+                        adapter.setMovies(movieModels);
                     }
                 }
 
@@ -61,5 +64,25 @@ public class MainActivity extends AppCompatActivity {
     private void searchMovieApi(String query, int pageNumber){
 
         movieViewModel.searchMovieApi(query, pageNumber);
+    }
+
+    private void configureRecyclerView(){
+
+        adapter = new MovieRecyclerViewAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+
+            }
+        });
+
+    }
+
+    @Override
+    public void onMovieClick(int position) {
+
     }
 }
