@@ -10,13 +10,15 @@ public class MovieModel implements Parcelable {
     private int id;
     private float vote_average;
     private String release_date;
+    private String poster_path;
 
-    public MovieModel(String title, String original_language, int id, float vote_average, String release_date) {
+    public MovieModel(String title, String original_language, int id, float vote_average, String release_date, String poster_path) {
         this.title = title;
         this.original_language = original_language;
         this.id = id;
         this.vote_average = vote_average;
         this.release_date = release_date;
+        this.poster_path = poster_path;
     }
 
     protected MovieModel(Parcel in) {
@@ -25,6 +27,22 @@ public class MovieModel implements Parcelable {
         id = in.readInt();
         vote_average = in.readFloat();
         release_date = in.readString();
+        poster_path = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeString(original_language);
+        dest.writeInt(id);
+        dest.writeFloat(vote_average);
+        dest.writeString(release_date);
+        dest.writeString(poster_path);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<MovieModel> CREATOR = new Creator<MovieModel>() {
@@ -59,17 +77,7 @@ public class MovieModel implements Parcelable {
         return release_date;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(title);
-        dest.writeString(original_language);
-        dest.writeInt(id);
-        dest.writeFloat(vote_average);
-        dest.writeString(release_date);
+    public String getPoster_path() {
+        return poster_path;
     }
 }
