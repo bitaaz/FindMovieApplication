@@ -133,7 +133,7 @@ public class RemoteDataSourceApi {
                 handler.cancel(true);
 
             }
-        }, 3000, TimeUnit.MICROSECONDS);
+        }, 3000, TimeUnit.MILLISECONDS);
     }
 
 }
