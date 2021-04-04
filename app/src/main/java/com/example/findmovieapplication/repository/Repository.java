@@ -11,6 +11,10 @@ public class Repository {
 
     private RemoteDataSourceApi remoteDataSourceApi;
 
+    private String query;
+
+    private int pageNumber;
+
     private static Repository instance;
 
     public static Repository getInstance(){
@@ -36,6 +40,13 @@ public class Repository {
     }
 
 
+    public void searchMovieApi(String searchedQuery, int searchedPageNumber){
+        query = searchedQuery;
+        pageNumber = searchedPageNumber;
+
+        remoteDataSourceApi.searchMovieApi(query, pageNumber);
+
+    }
 
 
 

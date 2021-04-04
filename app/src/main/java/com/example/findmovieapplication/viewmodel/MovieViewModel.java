@@ -21,4 +21,9 @@ public class MovieViewModel extends ViewModel {
 
         return repository.getSearchedMovies();
     }
+
+    public void searchMovieApi(String query, int pageNumber){
+
+        repository.searchMovieApi(query, pageNumber);
+    }
 }
