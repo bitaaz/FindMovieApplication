@@ -48,6 +48,10 @@ public class Repository {
 
     }
 
+    public void searchNextPage(){
+        searchMovieApi(query, pageNumber + 1);
+    }
+
 
 
 }

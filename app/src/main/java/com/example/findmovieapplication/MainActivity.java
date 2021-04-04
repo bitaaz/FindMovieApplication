@@ -76,6 +76,14 @@ public class MainActivity extends AppCompatActivity implements OnMovieListener {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
 
+                if(!recyclerView.canScrollVertically(1)){
+
+                    movieViewModel.searchNextPage();
+
+
+                }
+
+
             }
         });
 
