@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                movieViewModel.searchMovieApi("fast", 1);
+                searchMovieApi("fast", 1);
+
 
             }
         });
@@ -55,5 +56,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void searchMovieApi(String query, int pageNumber){
+
+        movieViewModel.searchMovieApi(query, pageNumber);
     }
 }
