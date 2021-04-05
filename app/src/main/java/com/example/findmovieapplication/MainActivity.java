@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -95,6 +96,10 @@ public class MainActivity extends AppCompatActivity implements OnMovieListener {
 
     @Override
     public void onMovieClick(int position) {
+
+        Intent intent = new Intent(MainActivity.this, MovieDetailsActivity.class);
+        intent.putExtra("movie", adapter.getSelectedMovie(position));
+        startActivity(intent);
 
     }
 }
