@@ -61,4 +61,18 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
 
         return movies.size();
     }
+
+    public MovieModel getSelectedMovie(int position){
+
+        if (movies != null){
+
+            if (movies.size() > 0){
+
+                return movies.get(position);
+
+            }
+
+        }
+        return null;
+    }
 }
