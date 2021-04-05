@@ -2,6 +2,7 @@ package com.example.findmovieapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -38,13 +39,15 @@ public class MainActivity extends AppCompatActivity implements OnMovieListener {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        setupSearchView();
+
         recyclerView = findViewById(R.id.recycler_view);
         movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
 
         observer();
         configureRecyclerView();
 
-        searchMovieApi("fast", 1);
+
 
 
     }
@@ -69,6 +72,24 @@ public class MainActivity extends AppCompatActivity implements OnMovieListener {
     private void searchMovieApi(String query, int pageNumber){
 
         movieViewModel.searchMovieApi(query, pageNumber);
+    }
+
+    private void setupSearchView(){
+
+        SearchView searchView = findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchMovieApi(query, 1);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
     }
 
     private void configureRecyclerView(){
