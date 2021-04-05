@@ -39,6 +39,11 @@ public class Repository {
 
     }
 
+    public LiveData<List<MovieModel>> getPopMovies(){
+
+        return remoteDataSourceApi.getPopMovies();
+    }
+
 
     public void searchMovieApi(String searchedQuery, int searchedPageNumber){
         query = searchedQuery;
@@ -50,6 +55,14 @@ public class Repository {
 
     public void searchNextPage(){
         searchMovieApi(query, pageNumber + 1);
+    }
+
+    public void popMovieApi(int popPageNumber){
+
+        pageNumber = popPageNumber;
+
+        remoteDataSourceApi.popMovieApi(pageNumber);
+
     }
 
 
