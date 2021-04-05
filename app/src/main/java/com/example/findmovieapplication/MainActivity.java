@@ -45,7 +45,10 @@ public class MainActivity extends AppCompatActivity implements OnMovieListener {
         movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
 
         observer();
+        popMovieObserver();
         configureRecyclerView();
+
+        popMovieApi(1);
 
 
 
@@ -69,9 +72,32 @@ public class MainActivity extends AppCompatActivity implements OnMovieListener {
         });
     }
 
+    private void popMovieObserver(){
+
+        movieViewModel.getPopMovies().observe(this, new Observer<List<MovieModel>>() {
+            @Override
+            public void onChanged(List<MovieModel> movieModels) {
+
+                if (movieModels != null){
+
+                    for (MovieModel movieModel: movieModels){
+
+                        Log.v("Tag", "Titles: " + movieModel.getTitle());
+                        adapter.setMovies(movieModels);
+                    }
+                }
+            }
+        });
+    }
+
     private void searchMovieApi(String query, int pageNumber){
 
         movieViewModel.searchMovieApi(query, pageNumber);
+    }
+
+    private void popMovieApi(int pageNumber){
+
+        movieViewModel.popMovieApi(pageNumber);
     }
 
     private void setupSearchView(){
@@ -96,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieListener {
 
         adapter = new MovieRecyclerViewAdapter(this);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
