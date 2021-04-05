@@ -14,4 +14,12 @@ public interface RetrofitInterface {
             @Query("query") String query,
             @Query("page") int pageNumber
     );
+
+
+    @GET("/3/movie/popular")
+    Call<MovieSearchResponse> popMovies(
+
+            @Query("api_key") String key,
+            @Query("page") int pageNumber
+    );
 }
