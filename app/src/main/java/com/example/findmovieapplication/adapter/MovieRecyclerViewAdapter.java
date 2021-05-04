@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.findmovieapplication.R;
+import com.example.findmovieapplication.databinding.MovieListItemBinding;
 import com.example.findmovieapplication.model.MovieModel;
 
 import java.util.List;
@@ -31,9 +32,11 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_list_item, parent, false);
+//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_list_item, parent, false);
+        MovieListItemBinding binding = MovieListItemBinding.inflate(LayoutInflater.from(parent.getContext()),
+                parent, false);
 
-        return new MovieViewHolder(view, onMovieListener);
+        return new MovieViewHolder(binding, onMovieListener);
     }
 
     @Override
