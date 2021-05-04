@@ -17,6 +17,7 @@ import android.widget.Button;
 
 import com.example.findmovieapplication.adapter.MovieRecyclerViewAdapter;
 import com.example.findmovieapplication.adapter.OnMovieListener;
+import com.example.findmovieapplication.databinding.ActivityMainBinding;
 import com.example.findmovieapplication.model.MovieModel;
 import com.example.findmovieapplication.viewmodel.MovieViewModel;
 
@@ -34,14 +35,17 @@ public class MainActivity extends AppCompatActivity implements OnMovieListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
+        Toolbar toolbar = binding.toolbar;
         setSupportActionBar(toolbar);
 
         setupSearchView();
 
-        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView = binding.recyclerView;
         movieViewModel = new ViewModelProvider(this).get(MovieViewModel.class);
 
         observer();
