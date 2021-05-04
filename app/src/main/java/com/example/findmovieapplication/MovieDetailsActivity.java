@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.findmovieapplication.databinding.ActivityMovieDetailsBinding;
 import com.example.findmovieapplication.model.MovieModel;
 
 import java.util.List;
@@ -22,12 +24,14 @@ public class MovieDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_details);
+        ActivityMovieDetailsBinding binding = ActivityMovieDetailsBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-        title = findViewById(R.id.title_details);
-        ratingBar = findViewById(R.id.rating_details);
-        overview = findViewById(R.id.overview);
-        imageView = findViewById(R.id.image_details);
+        title = binding.titleDetails;
+        ratingBar = binding.ratingDetails;
+        overview = binding.overview;
+        imageView = binding.imageDetails;
 
         getDataFromIntent();
     }

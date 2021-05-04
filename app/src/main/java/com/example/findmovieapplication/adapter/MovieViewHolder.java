@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.findmovieapplication.R;
+import com.example.findmovieapplication.databinding.MovieListItemBinding;
 
 public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -19,17 +20,17 @@ public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnC
     OnMovieListener onMovieListener;
 
 
-    public MovieViewHolder(@NonNull View itemView, OnMovieListener onMovieListener) {
+    public MovieViewHolder(MovieListItemBinding binding, OnMovieListener onMovieListener) {
 
-        super(itemView);
+        super(binding.getRoot());
 
         this.onMovieListener = onMovieListener;
 
-        title = itemView.findViewById(R.id.movie_title);
-        releaseDate = itemView.findViewById(R.id.movie_release_date);
-        language = itemView.findViewById(R.id.movie_language);
-        ratingBar = itemView.findViewById(R.id.movie_rating);
-        imageView = itemView.findViewById(R.id.movie_img);
+        title = binding.movieTitle;
+        releaseDate = binding.movieReleaseDate;
+        language = binding.movieLanguage;
+        ratingBar = binding.movieRating;
+        imageView = binding.movieImg;
 
         itemView.setOnClickListener(this);
     }
