@@ -26,6 +26,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    buildFeatures{
+
+        viewBinding = true
+        dataBinding = true
+
+    }
 }
 
 dependencies {
@@ -54,4 +61,6 @@ dependencies {
 
     //Material Design
     implementation 'com.google.android.material:material:1.4.0-alpha02'
+
+
 }
